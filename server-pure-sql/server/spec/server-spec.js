@@ -52,19 +52,15 @@ describe('Persistent Node Chat Server', function() {
         var queryString = 'SELECT * FROM messages';
         var queryArgs = [];
 
-        setTimeout(function() {
-          dbConnection.query(queryString, queryArgs, function(err, results) {
-            // Should have one result:
-            expect(results.length).to.equal(1);
+        dbConnection.query(queryString, queryArgs, function(err, results) {
+          // Should have one result:
+          expect(results.length).to.equal(1);
 
-            // TODO: If you don't have a column named message, change this test.
-            expect(results[0].message).to.equal('In mercy\'s name, three days is all I need.');
+          // TODO: If you don't have a column named message, change this test.
+          expect(results[0].message).to.equal('In mercy\'s name, three days is all I need.');
 
-            done();
-          });
-
-          
-        }, 500);
+          done();
+        });
       });
     });
   });

@@ -1,0 +1,47 @@
+
+> databases@1.1.0 start /Users/student/Desktop/2016-09-databases
+> node ./server/app.js
+
+Listening on 3000
+/messages
+Executing (default): CREATE TABLE IF NOT EXISTS `Messages` (`id` INTEGER NOT NULL auto_increment , `username` VARCHAR(255), `message` VARCHAR(255), `roomname` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `Messages`
+Executing (default): SELECT `id`, `username`, `message`, `roomname`, `createdAt`, `updatedAt` FROM `Messages` AS `Messages`;
+[0mOPTIONS /classes/messages [32m200 [0m2.897 ms - -[0m
+/messages
+Executing (default): CREATE TABLE IF NOT EXISTS `Messages` (`id` INTEGER NOT NULL auto_increment , `username` VARCHAR(255), `message` VARCHAR(255), `roomname` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `Messages`
+Executing (default): SELECT `id`, `username`, `message`, `roomname`, `createdAt`, `updatedAt` FROM `Messages` AS `Messages`;
+[0mGET /classes/messages [32m200 [0m0.526 ms - -[0m
+our post is running
+req body { username: 'Valjean' }
+running model users post with data { username: 'Valjean' }
+db user post  { username: 'Valjean' }
+[0mPOST /classes/users [32m201 [0m20.625 ms - -[0m
+Executing (default): CREATE TABLE IF NOT EXISTS `Users` (`id` INTEGER NOT NULL auto_increment , `username` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `Users`
+running controller messages post
+running model messages post
+[0mPOST /classes/messages [32m201 [0m1.228 ms - -[0m
+Executing (default): CREATE TABLE IF NOT EXISTS `Messages` (`id` INTEGER NOT NULL auto_increment , `username` VARCHAR(255), `message` VARCHAR(255), `roomname` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+first then is running { username: 'Valjean' }
+Executing (default): INSERT INTO `Users` (`id`,`username`,`createdAt`,`updatedAt`) VALUES (DEFAULT,'Valjean','2016-10-08 19:14:42','2016-10-08 19:14:42');
+Executing (default): SHOW INDEX FROM `Messages`
+Valjean exists
+Executing (default): INSERT INTO `Messages` (`id`,`createdAt`,`updatedAt`) VALUES (DEFAULT,'2016-10-08 19:14:42','2016-10-08 19:14:42');
+running controller messages post
+running model messages post
+[0mPOST /classes/messages [32m201 [0m0.729 ms - -[0m
+Executing (default): CREATE TABLE IF NOT EXISTS `Messages` (`id` INTEGER NOT NULL auto_increment , `username` VARCHAR(255), `message` VARCHAR(255), `roomname` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+/messages
+Executing (default): CREATE TABLE IF NOT EXISTS `Messages` (`id` INTEGER NOT NULL auto_increment , `username` VARCHAR(255), `message` VARCHAR(255), `roomname` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `Messages`
+Executing (default): SHOW INDEX FROM `Messages`
+Executing (default): INSERT INTO `Messages` (`id`,`createdAt`,`updatedAt`) VALUES (DEFAULT,'2016-10-08 19:14:42','2016-10-08 19:14:42');
+Executing (default): SELECT `id`, `username`, `message`, `roomname`, `createdAt`, `updatedAt` FROM `Messages` AS `Messages`;
+[0mGET /classes/messages [32m200 [0m0.159 ms - -[0m
+/messages
+Executing (default): CREATE TABLE IF NOT EXISTS `Messages` (`id` INTEGER NOT NULL auto_increment , `username` VARCHAR(255), `message` VARCHAR(255), `roomname` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+Executing (default): SHOW INDEX FROM `Messages`
+Executing (default): SELECT `id`, `username`, `message`, `roomname`, `createdAt`, `updatedAt` FROM `Messages` AS `Messages`;
+[0mGET /classes/messages [32m200 [0m0.233 ms - -[0m

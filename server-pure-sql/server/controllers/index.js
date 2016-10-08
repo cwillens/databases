@@ -24,7 +24,7 @@ module.exports = {
       //var getPromise = Promise.promisify(models.messages.get);
 
       models.messages.get(function(rows) {
-        //console.log('rows is ', rows);
+        console.log('rows is ', rows);
         //var responseBody = {headers: headers, method: req.method, url: req.url, results: rows };
 
         res.end(JSON.stringify(rows));       
@@ -65,7 +65,7 @@ module.exports = {
       var responseBody = {headers: headers, method: req.method, url: req.url };
       res.writeHead(201, headers);
       res.end(JSON.stringify(responseBody));
-      console.log('req body', req.body);
+
       models.users.post(req.body);
 
 

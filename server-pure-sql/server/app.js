@@ -1,6 +1,5 @@
 var express = require('express');
 var db = require('./db');
-var Sequelize = require('sequelize');
 
 // Middleware
 var morgan = require('morgan');
@@ -9,7 +8,7 @@ var parser = require('body-parser');
 // Router
 var router = require('./routes.js');
 
-
+db.connect();
 
 var app = express();
 module.exports.app = app;
