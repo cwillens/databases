@@ -12,14 +12,21 @@ var headers = {
 
 module.exports = {
   messages: {
+    options: function(req, res) {
+      console.log(req.url);
+      res.writeHead(200, headers);
+
+    },
     get: function (req, res) {
+      console.log(req.url);
       res.writeHead(200, headers);
 
       //var getPromise = Promise.promisify(models.messages.get);
 
       models.messages.get(function(rows) {
         console.log('rows is ', rows);
-        var responseBody = {headers: headers, method: req.method, url: req.url, results: rows };
+        //var responseBody = {headers: headers, method: req.method, url: req.url, results: rows };
+
         res.end(JSON.stringify(rows));       
       });
       /*

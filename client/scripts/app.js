@@ -121,16 +121,18 @@ class ChatterBox {
       contentType: 'application/json',
       success: (data) => {
         data = JSON.parse(data);
-        if (!data.results) {
+        console.log('data', data);
+        if (!data) {
           console.log('no data');
           return;
         }
-        for (var i = 0; i < data.results.length; i++) {
-          var ourResult = data.results[i];
+        for (var i = 0; i < data.length; i++) {
+          var ourResult = data[i];
           cleanMessage(ourResult);
           this.allRooms.add(ourResult.roomname);
           this.renderRoom(ourResult.roomname);
-          var id = ourResult.objectId;
+          var id = ourResult.id;
+          console.log('id', id);
           if ( !(id in this.addedMessages)) {
             if (ourResult[attribute] === value) {
               this.renderMessage(ourResult);
@@ -196,8 +198,9 @@ class ChatterBox {
     messageObj.$time.text(time);
   }
   renderMessage (messageObj) {
-    var id = messageObj.objectId;
+    var id = messageObj.id;
     this.addedMessages[id] = messageObj;
+
 
     var currentTime = new Date();
     var time = msToTime(currentTime - new Date(messageObj.createdAt));
@@ -271,7 +274,7 @@ class ChatterBox {
       contentType: 'application/json',
       success: (data) => {
         messageObj.createdAt = data.createdAt;
-        messageObj.objectId = data.objectId;
+        messageObj.id = data.id;
         //ourContext.renderMessage(messageObj);
       },
       error: (data) => {

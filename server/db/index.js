@@ -50,6 +50,7 @@ module.exports = {
     }, // a function which produces all the messages
     post: function (data) {
       console.log('running model messages post');
+      data.createdAt = new Date();
       dbConnection.query('INSERT INTO messages SET ?', data, function(err, res) {
         if (err) { throw err; }
         console.log('success!');
