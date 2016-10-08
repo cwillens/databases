@@ -12,6 +12,9 @@ router.get('/users', controller.users.get);
 
 router.post('/users', controller.users.post);
 
+router.post('/friends', controller.friends.post);
+
+router.get('/friends', controller.friends.get);
 
 
 module.exports = router;

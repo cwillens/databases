@@ -24,6 +24,11 @@ var Messages = db.define('Messages', {
   roomname: Sequelize.STRING
 });
 
+var Friends = db.define('Friends', {
+  userID: Sequelize.INTEGER,
+  friendID: Sequelize.INTEGER
+});
+
 module.exports = {
   Users: Users,
   Messages: Messages,
@@ -80,6 +85,42 @@ module.exports = {
           return;
         }
         //db.close();
+      })
+      .catch(function(err) {
+        // Handle any error in the chain
+        console.error('error', err);
+        db.close();
+      });
+
+    }
+  },
+
+  friends: {
+    // Ditto as above.
+    get: function (id, cb) {
+      Friends.sync()
+      .then(function() {
+        // Retrieve objects from the database:
+        return Friends.findAll({where: { userID: id}});
+        //return Friends.findAll();
+      })
+      .then(function(friends) {
+        friends.forEach(function(friends) {
+        });
+        cb(friends);
+      })
+      .catch(function(err) {
+        // Handle any error in the chain
+        console.error(err);
+        db.close();
+      });
+
+      
+    },
+    post: function (data) {
+      Friends.sync()
+      .then(function() {
+        return Friends.create(data);
       })
       .catch(function(err) {
         // Handle any error in the chain

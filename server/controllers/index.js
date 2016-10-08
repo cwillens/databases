@@ -1,6 +1,7 @@
 var models = require('../models');
 var fs = require('fs');
 var Promise = require('bluebird');
+var querystring = require('querystring');
 
 var headers = {
   'access-control-allow-origin': '*',
@@ -45,6 +46,23 @@ module.exports = {
       res.writeHead(201, headers);
       res.end(JSON.stringify(responseBody));
       models.users.post(req.body);
+    }
+  },
+
+  friends: {
+    get: function(req, res) {
+      res.writeHead(200, headers);
+      var splitter = req.url.split('=');
+      var id = Number(splitter[splitter.length - 1]);
+      models.friends.get(id, function(rows) {
+        res.end(JSON.stringify(rows));       
+      });
+    },
+    post: function (req, res) {
+      var responseBody = {headers: headers, method: req.method, url: req.url };
+      res.writeHead(201, headers);
+      res.end(JSON.stringify(responseBody));
+      models.friends.post(req.body);
     }
   }
 };

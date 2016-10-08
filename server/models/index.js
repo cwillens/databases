@@ -20,6 +20,19 @@ module.exports = {
       db.users.post(data);
 
     }
+  },
+
+  friends: {
+    // Ditto as above.
+    get: function (id, cb) {
+      return db.friends.get(id, function(rows) {
+        cb(rows);
+      });
+    },
+    post: function (data) {
+      db.friends.post(data);
+
+    }
   }
 };
 
