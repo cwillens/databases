@@ -1,5 +1,6 @@
 var models = require('../models');
 var fs = require('fs');
+var Promise = require('bluebird');
 
 var headers = {
   'access-control-allow-origin': '*',
@@ -11,9 +12,28 @@ var headers = {
 
 module.exports = {
   messages: {
-    get: function (req, res) {}, // a function which handles a get request for all messages
+    get: function (req, res) {
+      res.writeHead(200, headers);
+
+      var getPromise = Promise.promisify(models.messages.get);
+      getPromise().then(function(rows) {
+        console.log('rows', rows);
+        var responseBody = {headers: headers, method: req.method, url: req.url, results: rows };
+        console.log('responseBody', responseBody);
+        res.end(JSON.stringify(responseBody));
+      });
+
+
+    }, // a function which handles a get request for all messages
     post: function (req, res) {
       console.log('running controller messages post');
+      var collectData = '';
+      var responseBody = {headers: headers, method: req.method, url: req.url };
+      res.writeHead(201, headers);
+      res.end(JSON.stringify(responseBody));
+
+      models.messages.post(req.body);
+
     } // a function which handles posting a message to the database
   },
 
@@ -22,7 +42,6 @@ module.exports = {
     get: function (req, res) {},
     post: function (req, res) {
       console.log('our post is running');
-      var collectData = '';
       var responseBody = {headers: headers, method: req.method, url: req.url };
       res.writeHead(201, headers);
       res.end(JSON.stringify(responseBody));

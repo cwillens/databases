@@ -8,9 +8,9 @@ CREATE TABLE messages (
   /* Describe your table here.*/
   id int NOT NULL AUTO_INCREMENT,
   message varchar(255) NOT NULL,
-  userId int NOT NULL,
-  roomId int NOT NULL,
-  createdAt datetime NOT NULL,
+  username varchar(255) NOT NULL,
+  roomname varchar(255) NOT NULL,
+  createdAt datetime,
   PRIMARY KEY(id)
 );
 
@@ -22,12 +22,6 @@ CREATE TABLE users (
   PRIMARY KEY(id)
 );
 
-CREATE TABLE rooms (
-  /* Describe your table here.*/
-  id int NOT NULL AUTO_INCREMENT,
-  roomname varchar(255) NOT NULL,
-  PRIMARY KEY(id)
-);
 
 
 /*  Execute this file from the command line by typing:
