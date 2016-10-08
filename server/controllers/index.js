@@ -15,13 +15,26 @@ module.exports = {
     get: function (req, res) {
       res.writeHead(200, headers);
 
-      var getPromise = Promise.promisify(models.messages.get);
-      getPromise().then(function(rows) {
+      //var getPromise = Promise.promisify(models.messages.get);
+
+      models.messages.get(function(rows) {
+        console.log('rows is ', rows);
+        var responseBody = {headers: headers, method: req.method, url: req.url, results: rows };
+        res.end(JSON.stringify(rows));       
+      });
+      /*
+      .then(function(rows) {
         console.log('rows', rows);
         var responseBody = {headers: headers, method: req.method, url: req.url, results: rows };
         console.log('responseBody', responseBody);
         res.end(JSON.stringify(responseBody));
-      });
+      })
+      .catch(function(error) {
+        console.log('there is an error!');
+      })
+      .finally(function() {
+        console.log('finished the get promise!');
+      });*/
 
 
     }, // a function which handles a get request for all messages

@@ -29,19 +29,24 @@ module.exports = {
     dbConnection.connect();
   },
   messages: {
-    get: function () {
-      var queryPromise = Promise.promisify(dbConnection.query);
-      return queryPromise('SELECT * FROM messages').then(function(rows) {
+    get: function (cb) {
+     /* var queryPromise = Promise.promisify(dbConnection.query);
+      return queryPromise('SELECT * FROM messages')
+      .then(function(rows) {
         console.log('rows', rows);
-        return rows;
-      }).catch(function(err) { throw err; });
-      /*
+        return cb(rows);
+      })
+      .catch(function(err) { throw err; })
+      .finish(function() {
+        console.log('finished db get promise');
+      });*/
+      
       dbConnection.query('SELECT * FROM messages', function(err, rows) {
         if (err) { throw err; }
         console.log('rows', rows);
-        return rows;
+        cb(rows);
       });
-      */
+      
     }, // a function which produces all the messages
     post: function (data) {
       console.log('running model messages post');

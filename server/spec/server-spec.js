@@ -84,6 +84,7 @@ describe('Persistent Node Chat Server', function() {
         }, function(error, response, body) {
         console.log('err', error);
         console.log('hit message');
+        console.log('results is ', response.results);
         console.log('body', body);
         var messageLog = JSON.parse(body);
         expect(messageLog[0].message).to.equal('Men like you can never change!');
