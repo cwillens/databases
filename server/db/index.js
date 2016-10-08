@@ -31,16 +31,6 @@ module.exports = {
 
   messages: {
     get: function (cb) {
-     /* var queryPromise = Promise.promisify(dbConnection.query);
-      return queryPromise('SELECT * FROM messages')
-      .then(function(rows) {
-        console.log('rows', rows);
-        return cb(rows);
-      })
-      .catch(function(err) { throw err; })
-      .finish(function() {
-        console.log('finished db get promise');
-      });*/
       Messages.sync()
       .then(function() {
         // Retrieve objects from the database:
@@ -48,10 +38,8 @@ module.exports = {
       })
       .then(function(messages) {
         messages.forEach(function(message) {
-          //console.log(message.message + ' exists');
         });
         cb(messages);
-        //db.close();
       })
       .catch(function(err) {
         // Handle any error in the chain
@@ -59,12 +47,6 @@ module.exports = {
         db.close();
       });
 
-      
-      // dbConnection.query('SELECT * FROM messages', function(err, rows) {
-      //   if (err) { throw err; }
-      //   console.log('rows', rows);
-      //   cb(rows);
-      // });
       
     }, // a function which produces all the messages
     post: function (data) {
@@ -74,7 +56,6 @@ module.exports = {
         return Messages.create(data);
       })
       .then(function(message) {
-        //console.log(message.message + ' exists');
         //db.close();
       })
       .catch(function(err) {
@@ -90,35 +71,21 @@ module.exports = {
     // Ditto as above.
     get: function () {},
     post: function (data) {
-      console.log('db user post ', data);
       Users.sync()
       .then(function() {
-        console.log('first then is running', data);
-        // Now instantiate an object and save it:
         return Users.create(data);
       })
       .then(function(user) {
         if (!user) {
-          console.log('no user');
           return;
         }
-        console.log(user.username + ' exists');
-
         //db.close();
       })
       .catch(function(err) {
         // Handle any error in the chain
-        console.error('catch is running', err);
+        console.error('error', err);
         db.close();
       });
-
-
-
-      // console.log('running db users post with data', data);
-      // dbConnection.query('INSERT INTO users SET ?', data, function(err, res) {
-      //   if (err) { throw err; }
-      //   console.log('success!');
-      // });
 
     }
   }

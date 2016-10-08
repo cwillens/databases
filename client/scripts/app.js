@@ -121,9 +121,7 @@ class ChatterBox {
       contentType: 'application/json',
       success: (data) => {
         data = JSON.parse(data);
-        console.log('data', data);
         if (!data) {
-          console.log('no data');
           return;
         }
         for (var i = 0; i < data.length; i++) {
@@ -132,7 +130,6 @@ class ChatterBox {
           this.allRooms.add(ourResult.roomname);
           this.renderRoom(ourResult.roomname);
           var id = ourResult.id;
-          console.log('id', id);
           if ( !(id in this.addedMessages)) {
             if (ourResult[attribute] === value) {
               this.renderMessage(ourResult);
